@@ -17,6 +17,11 @@
   padding-top: 30px;
 }
 
+.header-container h3 {
+  color: #60c657;
+  }
+  
+
 .header {
   margin: 0;
   font-size: 50px;

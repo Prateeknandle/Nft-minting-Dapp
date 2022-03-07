@@ -19,6 +19,7 @@ contract MyEpicNFT is ERC721URIStorage {
     string[] secondWords = ["Batman", "Superman", "Joker", "IronMan", "Spiderman", "Hulk", "Flash"];
     string[] thirdWords = ["Dark", "Red", "Purple", "Blue", "White", "Green", "Yellow"];
 
+    event NewEpicNFTMinted(address sender, uint256 tokenId);
 
     constructor() ERC721 ("MyNft", "NFT") {
         console.log("This is my NFT contract. Whoa!");
@@ -53,6 +54,7 @@ contract MyEpicNFT is ERC721URIStorage {
   function makeAnEpicNFT() public {
      // Get the current tokenId, this starts at 0.
     uint256 newItemId = _tokenIds.current();
+    require(newItemId <= 50);
 
     string memory first = pickRandomFirstWord(newItemId);
     string memory second = pickRandomSecondWord(newItemId);
@@ -95,5 +97,7 @@ contract MyEpicNFT is ERC721URIStorage {
   
     _tokenIds.increment();
     console.log("An NFT w/ ID %s has been minted to %s", newItemId, msg.sender);
+
+    emit NewEpicNFTMinted(msg.sender, newItemId);
   }
 }
